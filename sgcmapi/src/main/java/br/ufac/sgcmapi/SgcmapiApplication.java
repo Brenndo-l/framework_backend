@@ -49,14 +49,14 @@ public class SgcmapiApplication {
 		List<Atendimento> atendimentos = repo.findAll();
 		StringBuilder resultado = new StringBuilder();
 		for (Atendimento item : atendimentos){
-			resultado.append(item.getId() + "\n");
-			resultado.append(item.getData() + "\n");
-			resultado.append(item.getHora() + "\n");
-			resultado.append(item.getStatus() + "\n");
-			resultado.append(item.getPaciente().getNome() + "\n");
-			resultado.append(item.getProfissional().getNome() + "\n");
+			resultado.append(item.getId()).append("\n");
+			resultado.append(item.getData()).append("\n");
+			resultado.append(item.getHora()).append("\n");
+			resultado.append(item.getStatus()).append("\n");
+			resultado.append(item.getPaciente().getNome()).append("\n");
+			resultado.append(item.getProfissional().getNome()).append("\n");
 			if(item.getConvenio() != null){
-				resultado.append(item.getConvenio().getNome() + "\n");
+				resultado.append(item.getConvenio().getNome()).append("\n");
 			}
 			
 		}
