@@ -6,7 +6,7 @@
         <script>
 
             function teste() {
-                fetch("http://localhost:9000/atendimento/consultar")
+                fetch("http://localhost:9012/atendimento/consultar")
                     .then(resposta => resposta.json())
                     .then(dados => {
                         let elemento = document.querySelector("pre");
