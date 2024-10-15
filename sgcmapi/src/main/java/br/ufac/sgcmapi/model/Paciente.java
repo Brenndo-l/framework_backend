@@ -10,33 +10,39 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 @Entity
 public class Paciente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
+
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = true)
+
     private String email;
+
     @Column(nullable = false)
     private String telefone;
+
     @Column(nullable = false)
     private LocalDate dataNascimento;
+
     @Enumerated(EnumType.STRING)
     private EGrupoSanguineo grupoSanguineo;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ESexo sexo;
-    @Column(nullable = true)
+
     private String cep;
-    @Column(nullable = true)
+
     private String endereco;
-    @Column(nullable = true)
+
     private String cidade;
-    @Column(nullable = true)
+
     private String estado;
     
     public Long getId() {

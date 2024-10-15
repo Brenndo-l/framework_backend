@@ -2,11 +2,11 @@ package br.ufac.sgcmapi.service;
 
 import java.util.List;
 
-public interface ICrudService <T> {
-    
-    public List get(String termoBusca);
+public interface ICrudService<T> {
+
+    public List<T> get(String termoBusca);
     public T get(Long id);
     public T save(T objeto);
     public void delete(Long id);
-
+    
 }

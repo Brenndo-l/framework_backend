@@ -17,32 +17,38 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(
-    uniqueConstraints={@UniqueConstraint(columnNames={"data", "hora", "profissional_id"}
-    ),
-    @UniqueConstraint(columnNames = {"data", "hora", "paciente_id"})}
+    uniqueConstraints = {
+        @UniqueConstraint(
+            columnNames = { "data", "hora", "profisisonal_id" }
+        ),
+        @UniqueConstraint(
+            columnNames = { "data", "hora", "paciente_id" }
+        )
+    }
 )
 public class Atendimento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private LocalDate data;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private LocalTime hora;
-
-    @ManyToOne(optional=false)
+    
+    @ManyToOne(optional = false)
     private Profissional profissional;
-
+    
     @ManyToOne
     private Convenio convenio;
-
-    @ManyToOne(optional=false)
+    
+    @ManyToOne(optional = false)
     private Paciente paciente;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EStatus status = EStatus.AGENDADO;
 

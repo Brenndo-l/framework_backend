@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Unidade implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
@@ -17,8 +18,7 @@ public class Unidade implements Serializable {
 
     @Column(nullable = false, unique = true)
     private String nome;
-
-    @Column(nullable=true)
+    
     private String endereco;
     
     public Long getId() {

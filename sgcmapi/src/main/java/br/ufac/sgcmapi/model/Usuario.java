@@ -9,20 +9,20 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 @Entity
 public class Usuario implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable = true)
     private String nomeCompleto;
 
     @Column(nullable = false, unique = true)
     private String nomeUsuario;
 
-    @Column(nullable = true)
     private String senha;
 
     @Column(nullable = false)

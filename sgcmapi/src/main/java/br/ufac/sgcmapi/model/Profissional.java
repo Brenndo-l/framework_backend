@@ -8,29 +8,31 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+
 @Entity
 public class Profissional implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String email;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String registroConselho;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String telefone;
 
-    @ManyToOne(optional=false)
+    @ManyToOne(optional = false)
     private Especialidade especialidade;
 
-    @ManyToOne(optional=false)
+    @ManyToOne(optional = false)
     private Unidade unidade;
     
     public Long getId() {

@@ -10,12 +10,13 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Convenio implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)

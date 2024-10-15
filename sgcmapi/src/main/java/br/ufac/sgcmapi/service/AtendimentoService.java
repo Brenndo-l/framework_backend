@@ -13,12 +13,15 @@ public class AtendimentoService implements ICrudService<Atendimento> {
 
     private final AtendimentoRepository repo;
 
-    public AtendimentoService(AtendimentoRepository repo){
+    public AtendimentoService(AtendimentoRepository repo) {
         this.repo = repo;
     }
 
     @Override
-    public List get(String termoBusca) {
+    public List<Atendimento> get(String termoBusca) {
+        if(termoBusca != null && termoBusca.isBlank()){
+            return repo.busca(termoBusca);
+        }
         return repo.findAll();
     }
 
@@ -34,12 +37,21 @@ public class AtendimentoService implements ICrudService<Atendimento> {
 
     @Override
     public void delete(Long id) {
-      Atendimento registro= this.get(id);
-      if(registro != null){
-         registro.setStatus(EStatus.CANCELADO);
-         this.save(registro);
-      }
-      
+        Atendimento registro = this.get(id);
+        if (registro != null) {
+            registro.setStatus(EStatus.CANCELADO);
+            this.save(registro);
+        }
+    }
+
+    public Atendimento updateStatus(Long id){
+        Atendimento registro = this.get(id);
+        if (registro != null){
+            EStatus novoStatus = registro.getStatus().proximo();
+            registro.setStatus(novoStatus);
+            this.save(registro);
+        }
+        return registro;
     }
     
 }

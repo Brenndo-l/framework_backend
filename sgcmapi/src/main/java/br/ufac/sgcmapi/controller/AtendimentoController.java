@@ -2,6 +2,7 @@ package br.ufac.sgcmapi.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufac.sgcmapi.model.Atendimento;
@@ -20,15 +22,16 @@ import br.ufac.sgcmapi.service.AtendimentoService;
 @RequestMapping("/atendimento")
 public class AtendimentoController implements ICrudController<Atendimento> {
 
-    public final AtendimentoService servico;
+    private final AtendimentoService servico;
 
-    public AtendimentoController(AtendimentoService servico){
+    @Autowired
+    public AtendimentoController(AtendimentoService servico) {
         this.servico = servico;
     }
 
     @Override
     @GetMapping("/consultar")
-    public ResponseEntity<List<Atendimento>> get(String termoBusca) {
+    public ResponseEntity<List<Atendimento>> get(@RequestParam(required=false) String termoBusca) {
         List<Atendimento> registros = servico.get(termoBusca);
         return ResponseEntity.ok(registros);
     }
@@ -37,7 +40,6 @@ public class AtendimentoController implements ICrudController<Atendimento> {
     @GetMapping("/{id}")
     public ResponseEntity<Atendimento> get(@PathVariable Long id) {
         Atendimento registro = servico.get(id);
-        if()
         return ResponseEntity.ok(registro);
     }
 
@@ -60,6 +62,12 @@ public class AtendimentoController implements ICrudController<Atendimento> {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         servico.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<Atendimento> updateStatus(@PathVariable Long id){
+        Atendimento registro = servico.updateStatus(id);
+        return ResponseEntity.ok(registro);
     }
     
 }
